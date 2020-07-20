@@ -4,6 +4,7 @@ create table profiles (
   lname varchar(40),
   pic_id varchar(32)
 );
+
 create table article (
   id integer primary key,
   titre varchar(100),
