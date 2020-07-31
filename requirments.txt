@@ -2,3 +2,4 @@ flask=1.0
 flask_sqlalchemy=
 flask_wtf=0.14.3
 email-validator=1.1.1
+flask_login=
