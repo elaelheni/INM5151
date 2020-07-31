@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<html lang="fr-FR">
 <html>
 
 <head>
@@ -31,7 +32,7 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="#">
+                    <a href="index.html">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
@@ -43,40 +44,40 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="#">Chambres à coucher</a>
+                            <a href="lit.html">Chambres à coucher</a>
                         </li>
                         <li>
-                            <a href="#">Meubles d'interieur</a>
+                            <a href="meuble.html">Meubles d'interieur</a>
                         </li>
                         <li>
-                            <a href="#">Décoration</a>
+                            <a href="deco.html">Décoration</a>
                         </li>
                     </ul>
-                    <a href="#">
+                    <a href="panier.html">
                         <i class="fa fa-shopping-cart"></i>
                         Panier
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="faq.html">
                         <i class="fas fa-question"></i>
                         FAQ
                     </a>
                 </li>
                 <li>
-                    <a href="#">
+                    <a href="about.html">
                         <i class="fas fa-paper-plane"></i>
-                        Contact
+                        À propos
                     </a>
                 </li>
             </ul>
 
             <ul class="list-unstyled CTAs">
                 <li>
-                    <a href="#">Connexion</a>
+                    <a href="login.html">Connexion</a>
                 </li>
                 <li>
-                    <a href="#" class="article">Inscription</a>
+                    <a href="register.html" class="article">Inscription</a>
                 </li>
             </ul>
         </nav>
@@ -106,10 +107,42 @@
                 </div>
             </nav>
 
-            
+ <main role="main" class="container">
+      <div class="row">
+        <div class="col-md-8">
+
+{% with messages = get_flashed_messages(with_categories=true) %} 
+    
+    {% if messages %}
+
+        {% for category, message in messages %}
+        <div class="alert alert-{{ category }}">
+
+            {{ message }}
+
+
+        </div>
+
+        {% endfor %}
+
+
+    {% endif %}
+
+{% endwith %} 
+
 {% block content %}{% endblock %}
         </div>
     </div>
+     </div>
+     <div class="col-md-4">
+          <div class="content-section">
+            <h3>Publicités</h3>
+            <a href="https://www.youtube.com"><img src="../static/pubyoutube.jpg"/></a>
+            
+          </div>
+        </div>
+      </div>
+    </main>
 
     <!-- jQuery CDN - Slim version (=without AJAX) -->
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
