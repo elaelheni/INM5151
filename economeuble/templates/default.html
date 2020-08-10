@@ -32,7 +32,7 @@
 
             <ul class="list-unstyled components">
                 <li class="active">
-                    <a href="index.html">
+                    <a href="{{ url_for ('home') }}">
                         <i class="fas fa-home"></i>
                         Home
                     </a>
@@ -65,7 +65,7 @@
                     </a>
                 </li>
                 <li>
-                    <a href="about.html">
+                    <a href="{{ url_for ('about') }}">
                         <i class="fas fa-paper-plane"></i>
                         À propos
                     </a>
@@ -73,12 +73,24 @@
             </ul>
 
             <ul class="list-unstyled CTAs">
-                <li>
-                    <a href="login.html">Connexion</a>
+                {% if current_user.is_authenticated %}
+                                <li>
+                    <a href="{{ url_for ('new_article') }}" >Nouvel article</a>
                 </li>
                 <li>
-                    <a href="register.html" class="article">Inscription</a>
+                    <a href="{{ url_for ('logout') }}" >Deconnexion</a>
                 </li>
+                <li>
+                    <a href="{{ url_for ('account') }}" >Compte</a>
+                </li>
+                {% else %}
+                <li>
+                    <a href="{{ url_for ('login') }}" >Connexion</a>
+                </li>
+                <li>
+                    <a href="{{ url_for ('register') }}" >Inscription</a>
+                </li>
+                {% endif %}
             </ul>
         </nav>
 
@@ -137,7 +149,7 @@
      <div class="col-md-4">
           <div class="content-section">
             <h3>Publicités</h3>
-            <a href="https://www.youtube.com"><img src="../static/pubyoutube.jpg"/></a>
+            <a href="https://www.youtube.com"><img class="pub" src="../static/pubyoutube.jpg"/></a>
             
           </div>
         </div>

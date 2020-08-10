@@ -1,0 +1,26 @@
+{% extends "default.html" %}
+
+
+{% block content %}
+
+<article class="media content-section">
+        	<img class="rounded-circle article-img" src="{{ url_for ('static', filename='profile_pics/' + article.author.image_profile)}}">
+          <div class="media-body">
+            <div class="article-metadata">
+              <a class="mr-2" href="#">{{ article.author.username }}</a>
+              <small class="text-muted">{{ article.date_posted.strftime('%Y-%m-%d') }}</small>
+            </div>
+            <h2 class="article-title">{{ article.title }}</h2>
+            <img class="image" src="{{ url_for ('static', filename='articlepics/' + article.picture) }}">
+            <br>
+            <br>
+
+            <p class="article-content">{{ article.description }}</p>
+
+            <h4>{{ article.price }}</h4>
+          </div>
+
+        </article>
+
+
+{% endblock content %}

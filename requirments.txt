@@ -1,5 +1,8 @@
 flask=1.0
-flask_sqlalchemy=
+flask_sqlalchemy=1.1.1
 flask_wtf=0.14.3
 email-validator=1.1.1
-flask_login=
+flask_login=1.1.1
+flask-bcrypt=0.7.1
+secret=0.8
+pillow=7.2.0
