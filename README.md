@@ -2,7 +2,7 @@
 
 ## Description
 
-Dans le cadre du cours ** Projet d'analyse et de modélisation (INM5151) ** pour ** le programme de baccalauréat en informatique et génie logiciel ** de l'UQAM.
+Dans le cadre du cours **Projet d'analyse et de modélisation (INM5151)** pour **le programme de baccalauréat en informatique et génie logiciel** de l'UQAM.
 
 
 Le projet se base sur des éléments spéculatifs en raison de sa nature académique. 
@@ -62,10 +62,10 @@ Librairie : SQLAlchemy
 
 Pour en créer une autre :
 
-`eport FLASK_APP = manage.py`
-`flask shell()`
-`db.create_all()`
-`exit()`
+`eport FLASK_APP = manage.py
+flask shell()
+db.create_all()
+exit()`
 
 ## Technologies utilisées
 
