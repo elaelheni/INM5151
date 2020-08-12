@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="fr-FR">
 <html>
@@ -7,12 +8,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 
-    <title>ECONOMEUBLE</title>
+    <title>{{ title }}</title>
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <!-- Our Custom CSS -->
-    <link rel="stylesheet" href="../static/style.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css')}}">
 
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
@@ -26,7 +27,7 @@
         <!-- Sidebar  -->
         <nav id="sidebar">
             <div class="sidebar-header">
-                <h3><a href="#"><img src="../static/LOGO.png" class="logo" alt="logo EM">Economeuble</h3>
+                <h3><a href="{{ url_for ('home') }}"><img src="{{ url_for('static', filename='LOGO.png')}}" class="logo" alt="logo EM">Economeuble</h3>
                 <strong>EM</strong>
             </div>
 
@@ -44,22 +45,22 @@
                     </a>
                     <ul class="collapse list-unstyled" id="pageSubmenu">
                         <li>
-                            <a href="lit.html">Chambres à coucher</a>
+                            <a href="{{ url_for ('lit') }}">Chambres à coucher</a>
                         </li>
                         <li>
-                            <a href="meuble.html">Meubles d'interieur</a>
+                            <a href="{{ url_for ('meuble') }}">Meubles d'interieur</a>
                         </li>
                         <li>
-                            <a href="deco.html">Décoration</a>
+                            <a href="{{ url_for ('deco') }}">Décoration</a>
                         </li>
                     </ul>
-                    <a href="panier.html">
+                    <a href="{{ url_for('cart')}}">
                         <i class="fa fa-shopping-cart"></i>
                         Panier
                     </a>
                 </li>
                 <li>
-                    <a href="faq.html">
+                    <a href="{{ url_for ('faq') }}">
                         <i class="fas fa-question"></i>
                         FAQ
                     </a>
@@ -78,10 +79,13 @@
                     <a href="{{ url_for ('new_article') }}" >Nouvel article</a>
                 </li>
                 <li>
-                    <a href="{{ url_for ('logout') }}" >Deconnexion</a>
+                    <a href="{{ url_for ('wish_list') }}" >Liste d'envies</a>
                 </li>
                 <li>
                     <a href="{{ url_for ('account') }}" >Compte</a>
+                </li>
+                  <li>
+                    <a href="{{ url_for ('logout') }}" >Deconnexion</a>
                 </li>
                 {% else %}
                 <li>
@@ -110,11 +114,13 @@
 
                     <div class="collapse navbar-collapse" id="navbarSupportedContent">
                         <label for="site-search"></label>
-<input type="search" id="site-search" name="search"
-       aria-label="Search through site content" placeholder="Chercher..">
+        <form action="/resultat-recherche" method="POST">
 
-<button class="cherche">Chercher</button>
+            <input class = "form-control" type="text" name="mot_rech">
 
+           <input class="btn btn-primary" type="submit" name="bouton" value="Chercher"  style="background: #7386D5;
+    color: #fff; text-align: center; font-size: 0.9em !important;">
+        </form>
                     </div>
                 </div>
             </nav>
@@ -149,7 +155,7 @@
      <div class="col-md-4">
           <div class="content-section">
             <h3>Publicités</h3>
-            <a href="https://www.youtube.com"><img class="pub" src="../static/pubyoutube.jpg"/></a>
+            <a href="https://www.youtube.com"><img class="pub" src="{{ url_for('static', filename='pubyoutube.jpg')}}"/></a>
             
           </div>
         </div>

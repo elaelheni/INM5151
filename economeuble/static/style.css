@@ -8,15 +8,33 @@ body {
     background: #fafafa;
 }
 
+.checked {
+  color: orange;
+}
+.rating {
+  unicode-bidi: bidi-override;
+  direction: rtl;
+}
+.rating > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+}
+.rating > span:hover:before,
+.rating > span:hover ~ span:before {
+   content: "\2605";
+   position: absolute;
+}
+
 img.pub{
-  height: 500px;
-  width: 500px;
+  height: 300px;
+  width: 300px;
   margin-right: 20px;
   margin-bottom: 16px;
 
 }
 
-h1, h2, h3, h4, h5, h6 {
+h2, h3, h4, h5, h6 {
   color: #444444;
 }
 

@@ -9,6 +9,13 @@
             <div class="article-metadata">
               <a class="mr-2" href="#">{{ article.author.username }}</a>
               <small class="text-muted">{{ article.date_posted.strftime('%Y-%m-%d') }}</small>
+              {% if article.author == current_user %}
+                <div>
+                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for ('update_article', article_id=article.id)}}">Mettre à jour</a>
+                  <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
+                </div>
+
+              {% endif %}
             </div>
             <h2 class="article-title">{{ article.title }}</h2>
             <img class="image" src="{{ url_for ('static', filename='articlepics/' + article.picture) }}">
@@ -18,9 +25,61 @@
             <p class="article-content">{{ article.description }}</p>
 
             <h4>{{ article.price }}</h4>
+                              <div>
+                    <button type="button" class="btn btn-warning btn-sm m-1" data-toggle="modal" data-target="#addCart">Panier</button>
+
+                   {% if current_user.is_authenticated %}
+
+                      <a class="btn btn-warning btn-sm mt-1 mb-1" href="{{ url_for ('wish_list')}}">Ajouter aux envies</a>
+
+                    {% else %}
+
+                      <a class="btn btn-warning btn-sm mt-1 mb-1" href="{{ url_for ('login')}}">Ajouter aux envies</a>
+
+                   {% endif %}
+                  
+                </div>
           </div>
 
         </article>
 
+        <!-- Modal -->
+  <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="deleteModalLabel">Supprimer l'article?</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <form action="{{ url_for('delete_article', article_id=article.id) }}" method="POST">
+            <input class="btn btn-danger" type="submit" value="Supprimer">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <div class="modal fade" id="addCart" tabindex="-1" role="dialog" aria-labelledby="addCartModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="addCartModalLabel">Ajouter au panier</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Annuler</button>
+          <form action="{{ url_for('cart') }}" method="POST">
+            <input class="btn btn-warning" type="submit" value="Ajouter">
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
 
 {% endblock content %}

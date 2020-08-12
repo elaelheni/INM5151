@@ -1,5 +1,5 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, SubmitField, BooleanField, TextAreaField, PasswordField
+from wtforms import StringField, SubmitField, BooleanField, TextAreaField, PasswordField, SelectField
 from wtforms.validators import DataRequired, Length, Email, EqualTo, ValidationError
 from flask_wtf.file import FileField, FileAllowed
 from flask_login import current_user
@@ -74,6 +74,13 @@ class UpdateForm(FlaskForm):
     price = StringField ('Mettre à jour le prix',validators=[DataRequired(), Length(min=3, max=10)])
 
     submit = SubmitField('Mettre à jour')
+
+
+class SearchForm(FlaskForm):
+    
+    search = StringField('Chercher ..')
+
+    submit = SubmitField('Chercher')
 
 
 

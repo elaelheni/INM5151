@@ -1,16 +1,16 @@
 # Projet de session INM5151
 
-#TODO
+## Description
 
-- Jouter / modifier/ supprimer un article => pas encore finie 
-- Ajouter l'option photo+prix aux articles
-- Option ajouter a la liste d'envies + ajouter au panier
-- Afficher le panier 
-- Interface de payement (meme si pas réelle)
-- Peauffiner le tout
+Dans le cadre du cours ** Projet d'analyse et de modélisation (INM5151) ** pour ** le programme de baccalauréat en informatique et génie logiciel ** de l'UQAM.
 
 
-## Travail fait par
+Le projet se base sur des éléments spéculatifs en raison de sa nature académique. 
+
+Economeuble est une plateforme permettant aux utilisateurs d'acheter ou de vendre des meubles neufs ou usagés de nature antique ou artisanale.
+
+
+## Auteurs
 
 CHAN, JOANNE - CHAJ03539105 
 
@@ -22,10 +22,76 @@ YOUNES, JULIEN - YOUJ19059900
 
 ZIDANI, DJAMEL - ZIDD29019507
 
-## Présenté à 
+## Plateformes supportées
 
-BERGER, JACQUES
+Cette application a été créée et téstée sous la plateforme macOS.
 
-## Dans le cadre du cours
+## Installation
 
-INM5151 - Projet d’analyse et de modélisation
+Le microframework utilisé est Flask pour Python (version 3.8.1) basé sur Jinja2, ce dernier sert à simplifier l'utilisation des requetes HTTP.
+
+Pour executer l'application il faut d'abord installer Flask ainsi que toutes les [librairies nécessaires](requirments.txt) à l'aide de la commande :
+
+`pip3 install <librairie>`
+
+Ensuite, lancer la commande :
+
+`python3 run.py`
+
+## Fonctionnalités réalisées :
+
+- Création d'un compte
+- Connexion
+- Modification des informations personnelles
+- Deconnexion
+- Ajout d'un article
+- Modification d'un article
+- Suppression d'un article
+- Affichage du profil d'un vendeur
+- Affichage d'un article
+- Ajout d'un article au panier
+
+## Base de données
+
+Le base données utilisées : SQLile
+
+Librairie : SQLAlchemy
+
+[Une base données](./economeuble/database.db) est disponible dans le projet.
+
+
+Pour en créer une autre :
+
+`eport FLASK_APP = manage.py`
+`flask shell()`
+`db.create_all()`
+`exit()`
+
+## Technologies utilisées
+
+Dans le front-end :
+- HTML5
+- CSS 3
+- Bootstrap
+- JavaScript
+
+Dans le back-end
+- Python 3.8.1
+- Flask 1.1.1
+- SQLite
+- Jinja 2
+
+## Références 
+
+- https://github.com/jacquesberger/exemplesINF5190
+- https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css
+- https://use.fontawesome.com/releases/v5.0.13/js/solid.js
+- https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js
+- https://code.jquery.com/jquery-3.3.1.slim.min.js
+- https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js
+- https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js
+
+## Sources des images:
+
+- https://www.google.com/
+

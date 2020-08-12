@@ -9,18 +9,57 @@ from economeuble.database import User, Article
 from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 
 
-
+@app.errorhandler(404)
+def page_not_found(error):
+    return render_template('404.html'), 404
 
 @app.route('/')
 @app.route('/home')
 def home():
-    articles = Article.query.all()
+    page = request.args.get('page', 1, type=int)
+    articles = Article.query.order_by(Article.date_posted.desc()).paginate(page=page, per_page=5)
     return render_template('index.html', articles=articles)
+
+
+@app.route('/user/<string:username>')
+def user_articles(username):
+    page = request.args.get('page', 1, type=int)
+    user = User.query.filter_by(username=username).first_or_404()
+    articles = Article.query.filter_by(author=user).order_by(Article.date_posted.desc()).paginate(page=page, per_page=5)
+    return render_template('user_post.html', articles=articles, user=user)
 
 
 @app.route("/about")
 def about():
     return render_template('about.html', title='A propos')
+
+@app.route("/deco")
+def deco():
+    return render_template('deco.html', title='Decoration')
+
+@app.route("/lit")
+def lit():
+    return render_template('chambres.html', title='Chambres')
+
+@app.route("/meuble")
+def meuble():
+    return render_template('meubles.html', title='Interieur')
+
+@app.route("/faq")
+def faq():
+    return render_template('faq.html', title='Foire de questions')
+
+@app.route('/search', methods=['POST','GET'])
+def search():
+    if request.method == 'POST':
+        form = request.form
+        search_value = form['mot_rech']
+        search = "%{0}%".format(search_value)
+        results = Article.query.filter(Article.title.like(search)).all()
+        return render_template ('search.html', articles=results, title='Resultat de la recherche')
+    else:
+        return redirect('/')
+
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -130,7 +169,7 @@ def new_article():
         return redirect(url_for('home'))
 
 
-    return render_template('create_article.html', title='Nouvel article', form=form, legend='Nouveau poste')
+    return render_template('create_article.html', title='Nouvel article', form=form, legend='Nouvel article')
 
 @app.route("/article/<int:article_id>")
 def article(article_id):
@@ -138,16 +177,51 @@ def article(article_id):
     article = Article.query.get_or_404(article_id)
     return render_template('article.html', title=article.title, article=article)
 
-@app.route("/article/<int:article_id>/update")
+@app.route("/article/<int:article_id>/update", methods=['GET', 'POST'])
 @login_required
 def update_article(article_id):
     article = Article.query.get_or_404(article_id)
     if article.author != current_user:
         abort(403)
     form = PostForm()
+    if form.validate_on_submit():
+        article.title = form.title.data
+        article.description = form.description.data
+        article.title = form.description.data
+        if form.picture.data():
+            picture_file = save_article_picture(form.picture.data)
+        db.session.commit()
+        flash ("L'article a été mis à jour!", 'success')
+        return redirect(url_for('article'), article_id=article.id)
+    elif request.method == 'GET':
+        form.title.data = article.title
+        form.description.data = article.description
+        form.price.data = article.price
+
     return render_template('create_article.html', title="Mettre à jour l'article", form=form, legend='Mettre à jour')
 
+@app.route("/article/<int:article_id>/delete", methods=['POST'])
+@login_required
+def delete_article(article_id):
+    article = Article.query.get_or_404(article_id)
+    if article.author != current_user:
+        abort(403)
+    db.session.delete(article)
+    db.session.commit()
+    flash('Votre article a été supprimé!', 'success')
+    return redirect(url_for('home'))
     
+@app.route("/wish", methods=['POST', 'GET'])
+@login_required
+def wish_list():
+    return render_template('wish.html', title="Liste d'envies")
 
+@app.route("/cart", methods=['POST', 'GET'])
+def cart():
+    if request.method == 'POST':
 
+        flash("L'article a été ajouté avec succès à votre panier", 'success')
+        return redirect(url_for('home'))
+
+    return render_template('cart.html', title="Panier")
 
