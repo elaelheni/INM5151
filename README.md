@@ -24,11 +24,11 @@ ZIDANI, DJAMEL - ZIDD29019507
 
 ## Plateformes supportées
 
-Cette application a été créée et téstée sous la plateforme macOS.
+Ce prototype a été créée et téstée sous la plateforme macOS.
 
 ## Installation
 
-Le microframework utilisé est Flask pour Python (version 3.8.1) basé sur Jinja2, ce dernier sert à simplifier l'utilisation des requetes HTTP.
+Le microframework utilisé est Flask pour Python basé sur Jinja2, ce dernier sert à simplifier l'utilisation des requetes HTTP.
 
 Pour executer l'application il faut d'abord installer Flask ainsi que toutes les [librairies nécessaires](requirments.txt) à l'aide de la commande :
 
