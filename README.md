@@ -63,8 +63,11 @@ Librairie : SQLAlchemy
 Pour en créer une autre :
 
 `eport FLASK_APP = manage.py
+
 flask shell()
+
 db.create_all()
+
 exit()`
 
 ## Technologies utilisées
