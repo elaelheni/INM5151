@@ -70,7 +70,7 @@ class PostForm(FlaskForm):
 class UpdateForm(FlaskForm):
     title = StringField('Titre', validators=[DataRequired()])
     description = TextAreaField('Description', validators=[DataRequired()])
-    picture = FileField("Mettre à jour la photo de l'article" , validators=[DataRequired(), FileAllowed(['jpg', 'png'])])
+    picture = FileField("Mettre à jour la photo de l'article" , validators=[FileAllowed(['jpg', 'png'])])
     price = StringField ('Mettre à jour le prix',validators=[DataRequired(), Length(min=3, max=10)])
 
     submit = SubmitField('Mettre à jour')
