@@ -80,7 +80,6 @@ class SearchForm(FlaskForm):
     
     search = StringField('Chercher ..')
 
-    submit = SubmitField('Chercher')
 
 
 
