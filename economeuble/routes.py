@@ -6,7 +6,7 @@ from economeuble import app, db, bcrypt
 from flask import send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from economeuble.database import User, Article
-from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, SearchForm
+from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
 
 
 @app.errorhandler(404)
@@ -48,7 +48,18 @@ def meuble():
 @app.route("/faq")
 def faq():
     return render_template('faq.html', title='Foire de questions')
-    
+
+@app.route('/search', methods=['POST','GET'])
+def search():
+    if request.method == 'POST':
+        form = request.form
+        search_value = form['mot_rech']
+        search = "%{0}%".format(search_value)
+        results = Article.query.filter(Article.title.like(search)).all()
+        return render_template ('search.html', articles=results, title='Resultat de la recherche')
+    else:
+        return redirect('/')
+
 
 
 @app.route("/register", methods=['GET', 'POST'])

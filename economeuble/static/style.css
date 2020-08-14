@@ -8,15 +8,6 @@ body {
     background: #fafafa;
 }
 
-img.logofaq{
-    margin-top:auto;
-    margin-bottom: auto;
-    width : 70px;
-    height:70px;
-    float :center;
-
-}
-
 .checked {
   color: orange;
 }
@@ -144,7 +135,7 @@ button.cherche {
     color: #fff;
 }
 img.logo{
-    float: center;
+    float: left;
     margin-top:auto;
     margin-bottom: auto;
     width : 70px;
