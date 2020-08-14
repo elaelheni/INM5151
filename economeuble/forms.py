@@ -75,12 +75,22 @@ class UpdateForm(FlaskForm):
 
     submit = SubmitField('Mettre à jour')
 
+class RequestResetForm(FlaskForm):
+    email = StringField('Adresse mail',
+                        validators=[DataRequired(), Email()])
+    submit = SubmitField('Récuperer le mot de passe')
 
-class SearchForm(FlaskForm):
-    
-    search = StringField('Chercher ..')
+    def validate_email(self, email):
+        user = User.query.filter_by(email=email.data).first()
+        if user is None:
+            raise ValidationError("Aucun compte n'est relié à cette adresse mail. Pensez à vous inscrire!")
 
-    submit = SubmitField('Chercher')
+class ResetPasswordForm(FlaskForm):
+    password = PasswordField ('Mot de passe', validators=[DataRequired()])
+    confirm_password = PasswordField ('Confirmation du mot de passe', validators=[DataRequired(), EqualTo('password')])
+    submit = SubmitField('Changer le mot de passe')
+
+
 
 
 

@@ -1,16 +1,174 @@
-{% extends "default.html" %}
+<!doctype html>
+<html lang="fr-FR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script>document.getElementsByTagName("html")[0].className += " js";</script>
+  <link rel="stylesheet" href="{{url_for ('static',filename='assets/css/style.css')}}">
+  <link rel="stylesheet" href="{{url_for ('static',filename='style.css')}}">
+  <title>FAQ</title>
+</head>
+<body>
+<header class="cd-header flex flex-column flex-center" style="color: #7386D5;">
+  <div class="text-component text-center" style="color: #7386D5;">
+    <h1>Foire aux questions</h1>
+    <a href="{{url_for('home')}}"><img src="{{ url_for('static', filename='LOGO.png')}}" class="logo" alt="logo EM"></a>
+  </div>
+</header>
+
+<section class="cd-faq js-cd-faq container max-width-md margin-top-lg margin-bottom-lg">
+	<ul class="cd-faq__categories">
+		<li><a class="cd-faq__category cd-faq__category-selected truncate" href="#basics">Questions fréquentes</a></li>
+		<li><a class="cd-faq__category truncate" href="#account">Compte</a></li>
+		<li><a class="cd-faq__category truncate" href="#payments">Paiement</a></li>
+		<li><a class="cd-faq__category truncate" href="#delivery">Livraison</a></li>
+	</ul> <!-- cd-faq__categories -->
+
+	<div class="cd-faq__items">
+		<ul id="basics" class="cd-faq__group">
+			<li class="cd-faq__title" style="color: #7386D5;"><h2>Questions fréquentes</h2></li>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Comment changer mon mot de passe?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Cette fonctionnalité est en cours de construction.</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Comment se connecter?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Si vous n'avez pas de compte pensez à vous inscrire <a href="{{url_for('register')}}" style="color: #7386D5;">ici.</a><br>
+            Sinon vous pouvez directement vous inscrire en cliquant sur ce <a href="{{url_for('login')}}" style="color: #7386D5;">lien</a> en entrant votre adresse mail et votre mot de pass.
+            </p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Puis-je supprimer un article?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Vous povez supprimer et modifier un article que vous avez publié.<br>
+            En accédent à l'article en question vous aurez les options : "Modifier" et "Supprimer".<br>
+            On vous demandera toujoujours de confirmer si vous etre sur de voukoir supprimer votre article.
+
+            </p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Puis-je commenter un vendeur/ un article?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Cette fonctionnalité est en cours de construction.</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+		</ul> <!-- cd-faq__group -->
 
 
-{% block content %}
+		<ul id="account" class="cd-faq__group">
+			<li class="cd-faq__title" style="color: #7386D5;"><h2>Compte</h2></li>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Puis-je modifier mes informations peronnelles?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>
+            Vous pouvez modifier vos informations : nom d'utilisateur et adresse mail.<br>
+            En vous connectant, vous pourrez accéder à la page "Compte".</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
 
-    <h1>FAQ</h1>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>J'ai oublié mon mot de passe, comment le récuperer?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Si vous avez un compte et que vous avez oublié votre mot de passe, un courriel vous sera envoyer.<br>
+            Veuillez suivre les instructions pour pouvoir mettre à jour votre mot de passe.</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+		</ul> <!-- cd-faq__group -->
 
-    <br>
-    <br>
-    <br>
-    <br>
+		<ul id="payments" class="cd-faq__group">
+			<li class="cd-faq__title" style="color: #7386D5;"><h2>Paiement</h2></li>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Comment payer ma commande?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>ECONOMEUBLE traite avec PayPal pour les payements des commandes.<br>
+            Si vous n'avez pas encore un compte, veuillez en créer un compte sur ce <a href="https://www.paypal.com/fr/home" style="color: #7386D5;">lien.</a>
+            </p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
 
-    <h5>Cette page est en construction.</h5>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Pourquoi mon payement PayPal n'a pas abouti?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Veuillez vérifier que votre compte Paypal est relié avec une carte/ un compte bancaire fonctionnel et en ordre.<br>
+            Si le problème persiste, veuillez contacter votre banque.</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
 
+		</ul> <!-- cd-faq__group -->
 
-{% endblock content %}
+		
+		<ul id="delivery" class="cd-faq__group">
+			<li class="cd-faq__title" style="color: #7386D5;"><h2>Livraison</h2></li>
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Que faire si je ne reçoit pas ma commande?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>En cas de perte ou de vol merci de nous écrire par courriel au : <a href="mailto: economeuble@info.ca" style="color: #7386D5;">economeuble@info.ca</a></p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>ECONOMEUBLE livre à l'international?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Oui, ECONOMEUBLE traite avec des revendeurs et des amateurs de meubles antiques et artisanaux partout à travers le monde.<br>
+            Nos livraison sont donc internationales.
+            </p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Quand vais-je recevoir ma commande?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Une livraison standard prend entre 7 et 14 jours ouvrables.</p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+			<li class="cd-faq__item">
+				<a class="cd-faq__trigger" href="#0" style="color: #7386D5;"><span>Si l'article est defectueux comment le retourner?</span></a>
+				<div class="cd-faq__content">
+          <div class="text-component">
+            <p>Si un probléme survient avec un aarticle reçu, veuillez nous écrire au : <a href="mailto: economeuble@info.ca" style="color: #7386D5;">economeuble@info.ca</a> </p>
+          </div>
+				</div> <!-- cd-faq__content -->
+			</li>
+
+		</ul> <!-- cd-faq__group -->
+	</div> <!-- cd-faq__items -->
+
+	<a href="#0" class="cd-faq__close-panel text-replace">Fermer</a>
+  
+  <div class="cd-faq__overlay" aria-hidden="true"></div>
+</section> <!-- cd-faq -->
+<script src="{{url_for('static', filename='assets/js/util.js')}}"></script> <!-- util functions included in the CodyHouse framework -->
+<script src="{{url_for('static', filename='assets/js/main.js')}}"></script> 
+</body>
+</html>

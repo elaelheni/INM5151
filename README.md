@@ -28,7 +28,7 @@ Ce prototype a été créée et téstée sous la plateforme macOS.
 
 ## Installation
 
-Le microframework utilisé est Flask pour Python basé sur Jinja2, ce dernier sert à simplifier l'utilisation des requetes HTTP.
+Le microframework utilisé est Flask pour Python basé sur le moteur de templates Jinja2, ce dernier sert à simplifier l'utilisation des requetes HTTP.
 
 Pour executer l'application il faut d'abord installer Flask ainsi que toutes les [librairies nécessaires](requirments.txt) à l'aide de la commande :
 
@@ -50,6 +50,7 @@ Ensuite, lancer la commande :
 - Affichage du profil d'un vendeur
 - Affichage d'un article
 - Ajout d'un article au panier
+- Récupération d'un mot de passe
 
 ## Base de données
 
@@ -62,13 +63,16 @@ Librairie : SQLAlchemy
 
 Pour en créer une autre :
 
-``eport FLASK_APP = manage.py
+`eport FLASK_APP = manage.py`
 
-flask shell()
 
-db.create_all()
+`flask shell()`
 
-exit()``
+
+`db.create_all()`
+
+
+`exit()`
 
 ## Technologies utilisées
 
@@ -87,6 +91,8 @@ Dans le back-end
 ## Références 
 
 - https://github.com/jacquesberger/exemplesINF5190
+- https://github.com/elaelheni/Projet-de-session-INF5190
+- https://codyhouse.co/demo/faq-template/index.html
 - https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css
 - https://use.fontawesome.com/releases/v5.0.13/js/solid.js
 - https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js

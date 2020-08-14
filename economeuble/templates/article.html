@@ -11,7 +11,7 @@
               <small class="text-muted">{{ article.date_posted.strftime('%Y-%m-%d') }}</small>
               {% if article.author == current_user %}
                 <div>
-                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for ('update_article', article_id=article.id)}}">Mettre à jour</a>
+                  <a class="btn btn-secondary btn-sm mt-1 mb-1" href="{{ url_for ('update_article', article_id=article.id)}}">Modifier</a>
                   <button type="button" class="btn btn-danger btn-sm m-1" data-toggle="modal" data-target="#deleteModal">Supprimer</button>
                 </div>
 

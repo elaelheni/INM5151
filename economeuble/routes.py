@@ -2,12 +2,12 @@ import os
 import secrets
 from PIL import Image
 from flask import render_template, make_response, redirect, flash, url_for, abort, request
-from economeuble import app, db, bcrypt
+from economeuble import app, db, bcrypt, mail
 from flask import send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from economeuble.database import User, Article
-from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm
-
+from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
+from flask_mail import Message
 
 @app.errorhandler(404)
 def page_not_found(error):
@@ -48,18 +48,6 @@ def meuble():
 @app.route("/faq")
 def faq():
     return render_template('faq.html', title='Foire de questions')
-
-@app.route('/search', methods=['POST','GET'])
-def search():
-    if request.method == 'POST':
-        form = request.form
-        search_value = form['mot_rech']
-        search = "%{0}%".format(search_value)
-        results = Article.query.filter(Article.title.like(search)).all()
-        return render_template ('search.html', articles=results, title='Resultat de la recherche')
-    else:
-        return redirect('/')
-
 
 
 @app.route("/register", methods=['GET', 'POST'])
@@ -200,6 +188,20 @@ def update_article(article_id):
 
     return render_template('create_article.html', title="Mettre à jour l'article", form=form, legend='Mettre à jour')
 
+def send_reset_email(user):
+    token = user.get_reset_token()
+    msg = Message('Recuperation de mot de passe', sender='economeuble_recup@gmail.com', recipients=[user.email])
+    msg.body = f'''
+
+        Pour récuperer votre mot de passe cliquez sur ce lien : {url_for('reset_token', token=token, _external=True)}
+
+        Si vous n'avez pas fait cette demande, ignorez ce courriel
+    '''
+    mail.send(msg)
+
+    
+
+
 @app.route("/article/<int:article_id>/delete", methods=['POST'])
 @login_required
 def delete_article(article_id):
@@ -224,4 +226,34 @@ def cart():
         return redirect(url_for('home'))
 
     return render_template('cart.html', title="Panier")
+
+@app.route('/reset_password', methods=['POST','GET'])
+def reset_request():
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    form = RequestResetForm()
+    if form.validate_on_submit():
+        user = User.query.filter_by(email=form.email.data).first()
+        send_reset_email(user)
+        flash('Un courriel vous a été envoyé avec toutes les instructions nécessaires', 'info')
+        return redirect(url_for('login'))
+
+    return render_template('reset_request.html', title='Recuperer le mot de passe', form=form)
+
+@app.route('/reset_password/<token>', methods=['POST','GET'])
+def reset_token(token):
+    if current_user.is_authenticated:
+        return redirect(url_for('home'))
+    user = User.verify_reset_token(token)
+    if user is None:
+        flash ('Cette session est invalide ou a expiré!', 'warning')
+        return redirect(url_for('reset_request'))
+    form = ResetPasswordForm()
+    if form.validate_on_submit():
+        hashed_password = bcrypt.generate_password_hash(form.password.data).decode('utf-8')
+        user.password = hashed_password
+        db.session.commit()
+        flash('Votre mot de passe a été changé! Vous pouvez vous connectez.', 'success')
+        return redirect(url_for('login'))
+    return render_template('reset_token.html', title='Recuperer le mot de passe', form=form)
 
