@@ -6,7 +6,7 @@ from economeuble import app, db, bcrypt, mail
 from flask import send_from_directory
 from flask_login import login_user, current_user, logout_user, login_required
 from economeuble.database import User, Article
-from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm
+from economeuble.forms import RegistrationForm, LoginForm, UpdateAccountForm, PostForm, RequestResetForm, ResetPasswordForm, UpdateForm
 from flask_mail import Message
 
 @app.errorhandler(404)
@@ -171,7 +171,7 @@ def update_article(article_id):
     article = Article.query.get_or_404(article_id)
     if article.author != current_user:
         abort(403)
-    form = PostForm()
+    form = UpdateForm()
     if form.validate_on_submit():
         article.title = form.title.data
         article.description = form.description.data
@@ -186,16 +186,20 @@ def update_article(article_id):
         form.description.data = article.description
         form.price.data = article.price
 
-    return render_template('create_article.html', title="Mettre à jour l'article", form=form, legend='Mettre à jour')
+    return render_template('update_article.html', title="Mettre à jour l'article", form=form, legend='Mettre à jour')
 
 def send_reset_email(user):
     token = user.get_reset_token()
     msg = Message('Recuperation de mot de passe', sender='economeuble_recup@gmail.com', recipients=[user.email])
     msg.body = f'''
 
-        Pour récuperer votre mot de passe cliquez sur ce lien : {url_for('reset_token', token=token, _external=True)}
+        Pour récuperer votre mot de passe cliquez sur ce lien : 
+        {url_for('reset_token', token=token, _external=True)}
 
-        Si vous n'avez pas fait cette demande, ignorez ce courriel
+
+
+
+        Si vous n'avez pas fait cette demande, ignorez ce courriel.
     '''
     mail.send(msg)
 

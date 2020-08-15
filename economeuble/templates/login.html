@@ -38,15 +38,15 @@
             </fieldset>
             <div class="form-group">
                 {{ form.submit(class="btn btn-outline-info") }}
-            </div>
-            <small class="text-muted ml-2">
-                <a href="{{url_for('reset_request')}}">Mot de passe oublié?</a>
+                            <small class="text-muted ml-2">
+                <a href="{{url_for('reset_request')}}"  style="color: #7386D5;">Mot de passe oublié?</a>
             </small>
+            </div>
         </form>
     </div>
     <div class="border-top pt-3">
         <small class="text-muted">
-            Avez-vous besoin d'un compte? <a class="ml-2" href="{{ url_for('register') }}">Inscrivez-vous!</a>
+            Avez-vous besoin d'un compte? <a class="ml-2" href="{{ url_for('register') }}" style="color: #7386D5;">Inscrivez-vous!</a>
         </small>
     </div>	
 
