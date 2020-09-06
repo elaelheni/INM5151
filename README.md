@@ -54,11 +54,11 @@ Ensuite, lancer la commande :
 
 ## Base de données
 
-La base données utilisée : SQLile
+La base données utilisée : SQLite
 
 Librairie : SQLAlchemy
 
-[Une base données](./economeuble/database.db) est disponible dans le projet.
+[Une base de données](./economeuble/database.db) est disponible dans le projet.
 
 
 Pour en créer une autre :
