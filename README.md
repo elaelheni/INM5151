@@ -54,7 +54,7 @@ Ensuite, lancer la commande :
 
 ## Base de données
 
-Le base données utilisées : SQLile
+La base données utilisée : SQLile
 
 Librairie : SQLAlchemy
 
