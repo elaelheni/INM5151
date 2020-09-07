@@ -10,17 +10,9 @@ Le projet se base sur des éléments spéculatifs en raison de sa nature académ
 Economeuble est une plateforme permettant aux utilisateurs d'acheter ou de vendre des meubles neufs ou usagés de nature antique ou artisanale.
 
 
-## Auteurs
-
-CHAN, JOANNE - CHAJ03539105 
+## Auteure
 
 EL-HENI, ELA - ELHE24579402 
-
-LIMANE, MOUAD - LIMM15019000 
-
-YOUNES, JULIEN - YOUJ19059900 
-
-ZIDANI, DJAMEL - ZIDD29019507
 
 ## Plateformes supportées
 
